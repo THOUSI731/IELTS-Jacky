@@ -18,9 +18,9 @@
             <div class="blog-entry">
               <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{blog.image.url}}');">
 								<div class="meta-date text-center p-2">
-                  <span class="day"><script>document.write(new Date({{blog.created_at}}).day);</script></span>
+                  {% comment %} <span class="day"><script>document.write(new Date({{blog.created_at}}).day);</script></span>
                   <span class="mos"><script>document.write(new Date({{blog.created_at}}).month);</script></span>
-                  <span class="yr"><script>document.write(new Date({{blog.created_at}}).year);</script></span>
+                  <span class="yr"><script>document.write(new Date({{blog.created_at}}).year);</script></span> {% endcomment %}
                 </div>
               </a>
               <div class="text bg-white p-4">

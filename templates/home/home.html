@@ -1,0 +1,217 @@
+{% extends "index.html" %}
+{% block title %}Jacky IELTS - Home{% endblock title %}
+{% block content %}
+
+{% comment %} Thumbnail {% endcomment %}
+    <section class="home-slider owl-carousel">
+        {% for thumbnail in thumbnails %}
+        <div class="slider-item" style="background-image:url({{thumbnail.link}});">
+            <div class="overlay"></div>
+          <div class="container">
+            <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+            <div class="col-md-6 ftco-animate">
+              <h1 class="mb-4">{{thumbnail.title_name}}</h1>
+              <p>{{thumbnail.sub_title}}</p>
+              <p><a href="{{thumbnail.link}}" class="btn btn-primary px-4 py-3 mt-3">Conatct US</a></p>
+            </div>
+          </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        {% comment %} Why Choose Us {% endcomment %}
+        {% comment %} <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Why Choose Us</h1>
+          </div>
+        </div>
+      </div>
+    </section> {% endcomment %}
+        {% comment %} Products {% endcomment %}
+        {% if products %}
+        <section class="ftco-section bg-light">
+			<div class="container-fluid">
+				<div class="row justify-content-center mb-5 pb-2">
+              <div class="col-md-8 text-center heading-section ftco-animate">
+                <h2 class="mb-4"><span>Our</span> Courses</h2>
+              </div>
+            </div>	
+            <div class="row">
+              {% for product in products %}
+              <div class="col-md-3 course ftco-animate border">
+                <div class="img" style="background-image: url('{{product.image.url}}');"></div>
+                <div class="text pt-4">
+                  {% comment %} <p class="meta d-flex">
+                    <span><i class="icon-user mr-2"></i>Mr. Khan</span>
+                    <span><i class="icon-table mr-2"></i>10 seats</span>
+                    <span><i class="icon-calendar mr-2"></i>4 Years</span>
+                  </p> {% endcomment %}
+                  <h3><a href="#">{{product.product_name}}</a></h3>
+                  <p>{{product.price}} $</p>
+                  <p><a href="#" class="btn btn-primary">Buy now</a></p>
+                </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+        {% endif %}
+        
+        {% if teachers %}
+        
+        	<section class="ftco-section bg-white">
+			<div class="container-fluid px-4">
+				<div class="row justify-content-center mb-5 pb-2">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4">Our Trainers</h2>
+          </div>
+        </div>	
+				<div class="row">
+          {% for teacher in teachers %}
+          <div class="col-md-6 col-lg-3 ftco-animate">
+						<div class="staff">
+							<div class="img-wrap d-flex align-items-stretch">
+								<div class="img align-self-stretch" style="background-image: url({{teacher.profile_picture.url}});"></div>
+							</div>
+							<div class="text pt-3 text-center">
+								<h3>{{teacher.name}}</h3>
+								<span class="position mb-2">{{teacher.position}}</span>
+								<div class="faded">
+									<p>{{teacher.short_description}}</p>
+									{% comment %} <ul class="ftco-social text-center">
+		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
+		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+		              </ul> {% endcomment %}
+	              </div>
+							</div>
+						</div>
+					</div>
+          {% endfor %}
+				</div>
+			</div>
+		</section>
+        {% endif %}
+
+    {% comment %} Testimonials {% endcomment %}
+    {% if testimonials %}
+    <section class="ftco-section testimony-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center mb-5 pb-2">
+        <div class="col-md-8 text-center heading-section ftco-animate">
+          <h2 class="mb-4">Student Says About Us</h2>
+          {% comment %} <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p> {% endcomment %}
+        </div>
+      </div>
+      <div class="row ftco-animate justify-content-center">
+        <div class="col-md-12">
+          <div class="carousel-testimony owl-carousel">
+            {% for testimonial in testimonials %}
+            <div class="item">
+              <div class="testimony-wrap d-flex">
+                <div class="user-img mr-4" style="background-image: url('{{testimonial.profile_picture.url}}')">
+                </div>
+                <div class="text ml-2">
+                  <span class="quote d-flex align-items-center justify-content-center">
+                    <i class="icon-quote-left"></i>
+                  </span>
+                  <p>{{testimonial.text_name}}</p>
+                  <p class="name">{{testimonial.writer}}</p>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    {% endif %}
+        <footer class="ftco-footer ftco-bg-dark ftco-section">
+      {% comment %} <div class="container"> {% endcomment %}
+        <div class="row mb-5">
+          <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-5">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-5">
+              <h2 class="ftco-heading-2">Recent Blog</h2>
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+              <div class="block-21 mb-5 d-flex">
+                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                <div class="text">
+                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
+                  <div class="meta">
+                    <div><a href="#"><span class="icon-calendar"></span> June 27, 2019</a></div>
+                    <div><a href="#"><span class="icon-person"></span> Admin</a></div>
+                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-5 ml-md-4">
+              <h2 class="ftco-heading-2">Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Blog</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="ftco-footer-widget mb-5">
+            	<h2 class="ftco-heading-2">Subscribe Us!</h2>
+              <form action="#" class="subscribe-form">
+                <div class="form-group">
+                  <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
+                  <input type="submit" value="Subscribe" class="form-control submit px-3">
+                </div>
+              </form>
+            </div>
+            <div class="ftco-footer-widget mb-5">
+            	<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
+            	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p>
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | IELTS Jacky
+  </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+{% endblock content %}
+

@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% block title %}Jacky IELTS - Blog{% endblock title %}
+{% block content %}
+{% if blogs %}
+
+<section class="ftco-section bg-light">
+			<div class="container">
+				<div class="row justify-content-center mb-5 pb-2">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <h2 class="mb-4"><span>Recent</span> Blog</h2>
+            <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p>
+          </div>
+        </div>
+				<div class="row">
+                    {% for blog in blogs %}
+                    
+                    <div class="col-md-6 col-lg-4 ftco-animate">
+            <div class="blog-entry">
+              <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{blog.image.url}}');">
+								<div class="meta-date text-center p-2">
+                  <span class="day"><script>document.write(new Date({{blog.created_at}}).day);</script></span>
+                  <span class="mos"><script>document.write(new Date({{blog.created_at}}).month);</script></span>
+                  <span class="yr"><script>document.write(new Date({{blog.created_at}}).year);</script></span>
+                </div>
+              </a>
+              <div class="text bg-white p-4">
+                <h3 class="heading"><a href="#">{{blog.title_name}}</a></h3>
+                <p>{{blog.content}}</p>
+                <div class="d-flex align-items-center mt-4">
+	                <p class="mb-0"><a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
+	                <p class="ml-auto mb-0">
+	                	<a href="#" class="mr-2">{{blog.user_type|upper}}</a>
+	                	{% comment %} <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a> {% endcomment %}
+	                </p>
+                </div>
+              </div>
+            </div>
+          </div>
+                    {% endfor %}
+          
+        </div>
+			</div>
+		</section>
+
+{% endif %}
+{% endblock content %}

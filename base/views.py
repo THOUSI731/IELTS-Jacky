@@ -4,6 +4,7 @@ from products.models import Product
 from django.views import View
 from base.forms import EnrollNowForm
 from django.contrib import messages
+from django.urls import reverse
 
 
 class HomePageView(View):
@@ -12,6 +13,7 @@ class HomePageView(View):
         testimonials = Testimonial.objects.all()
         courses = Product.objects.all()
         teachers = Teacher.objects.all()[:4]
+        blogs=Post.objects.prefetch_related("blog_comments").all().order_by("-id")[:2]
         form = EnrollNowForm()
         context = {
             "thumbnails": thumbnails,
@@ -19,11 +21,10 @@ class HomePageView(View):
             "courses": courses,
             "teachers": teachers,
             "form": form,
+            "blogs":blogs
         }
         return render(request, "home/home.html", context)
 
-    def post(self, request, *args, **kwargs):
-        pass
 
 
 class CourseEnrollCreateView(View):
@@ -48,7 +49,7 @@ class CourseEnrollCreateView(View):
                 request, "Form Submitted Successfully.We Will Contact You Soon"
             )
             return redirect("home-view")
-        messages.error(request,"Something Went Wrong")
+        messages.error(request, "Something Went Wrong")
         return redirect("home-view")
 
 
@@ -65,13 +66,26 @@ class BlogDetailView(View):
             blog = Post.objects.get(id=id)
         except:
             return redirect("blogs-list")
-
-        return render(request, "blog/blog_detail.html", {"blog_data": blog})
+        blogs = Post.objects.exclude(id=id)
+        return render(
+            request, "blog/blog_detail.html", {"blog_data": blog, "blogs": blogs}
+        )
 
     def post(self, request, id, *args, **kwargs):
+        print(request, "nokkam")
         try:
             blog = Post.objects.get(id=id)
         except:
             return redirect("blogs-list")
-
-        Comment.objects.create()
+        full_name = request.POST.get("full_name")
+        email = request.POST.get("email")
+        website = request.POST.get("website")
+        message = request.POST.get("message")
+        Comment.objects.create(
+            post=blog,
+            full_name=full_name,
+            email=email,
+            message=message,
+            website=website,
+        )
+        return redirect(reverse("blog_detail", kwargs={"id": id}))

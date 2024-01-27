@@ -8502,13 +8502,13 @@ h1, h2, h3, h4, h5,
         left: 0;
         right: 0;
         background: black;
-        background: -moz-linear-gradient(45deg, black 0%, #fd6100 100%);
-        background: -webkit-gradient(left bottom, right top, color-stop(0%, black), color-stop(100%, #fd6100));
-        background: -webkit-linear-gradient(45deg, black 0%, #fd6100 100%);
-        background: -o-linear-gradient(45deg, black 0%, #fd6100 100%);
-        background: -ms-linear-gradient(45deg, black 0%, #fd6100 100%);
-        background: linear-gradient(45deg, black 0%, #fd6100 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='black', endColorstr='#fd6100', GradientType=1 );
+        background: -moz-linear-gradient(45deg, black 0%, #b82632 100%);
+        background: -webkit-gradient(left bottom, right top, color-stop(0%, black), color-stop(100%, #b82632));
+        background: -webkit-linear-gradient(45deg, black 0%, #b82632 100%);
+        background: -o-linear-gradient(45deg, black 0%, #b82632 100%);
+        background: -ms-linear-gradient(45deg, black 0%, #b82632 100%);
+        background: linear-gradient(45deg, black 0%, #b82632 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='black', endColorstr='#b82632', GradientType=1 );
         opacity: .5; }
       .owl-carousel.home-slider .slider-item .slider-text {
         height: 600px; }
@@ -9412,13 +9412,13 @@ textarea.form-control {
     opacity: .8;
     background: black;
     background: black;
-    background: -moz-linear-gradient(45deg, black 0%, #fd6100 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, black), color-stop(100%, #fd6100));
-    background: -webkit-linear-gradient(45deg, black 0%, #fd6100 100%);
-    background: -o-linear-gradient(45deg, black 0%, #fd6100 100%);
-    background: -ms-linear-gradient(45deg, black 0%, #fd6100 100%);
-    background: linear-gradient(45deg, black 0%, #fd6100 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='black', endColorstr='#fd6100', GradientType=1 ); }
+    background: -moz-linear-gradient(45deg, black 0%, #b82632 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, black), color-stop(100%, #b82632));
+    background: -webkit-linear-gradient(45deg, black 0%, #b82632 100%);
+    background: -o-linear-gradient(45deg, black 0%, #b82632 100%);
+    background: -ms-linear-gradient(45deg, black 0%, #b82632 100%);
+    background: linear-gradient(45deg, black 0%, #b82632 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='black', endColorstr='#b82632', GradientType=1 ); }
 
 .ftco-counter {
   overflow-x: hidden;
@@ -9470,14 +9470,14 @@ textarea.form-control {
     bottom: 0;
     content: '';
     opacity: .7;
-    background: #fd6100;
-    background: -moz-linear-gradient(45deg, #fd6100 0%, black 100%);
-    background: -webkit-gradient(left bottom, right top, color-stop(0%, #fd6100), color-stop(100%, black));
-    background: -webkit-linear-gradient(45deg, #fd6100 0%, black 100%);
-    background: -o-linear-gradient(45deg, #fd6100 0%, black 100%);
-    background: -ms-linear-gradient(45deg, #fd6100 0%, black 100%);
-    background: linear-gradient(45deg, #fd6100 0%, black 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd6100', endColorstr='black', GradientType=1 ); }
+    background: #b82632;
+    background: -moz-linear-gradient(45deg, #b82632 0%, black 100%);
+    background: -webkit-gradient(left bottom, right top, color-stop(0%, #b82632), color-stop(100%, black));
+    background: -webkit-linear-gradient(45deg, #b82632 0%, black 100%);
+    background: -o-linear-gradient(45deg, #b82632 0%, black 100%);
+    background: -ms-linear-gradient(45deg, #b82632 0%, black 100%);
+    background: linear-gradient(45deg, #b82632 0%, black 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b82632', endColorstr='black', GradientType=1 ); }
 
 .appointment-form .form-group {
   position: relative;

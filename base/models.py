@@ -1,5 +1,5 @@
 from django.db import models
-
+from products.models import Product
 # Create your models here.
 
 
@@ -12,16 +12,6 @@ class Thumbnail(models.Model):
 
     def __str__(self) -> str:
         return self.title_name
-
-
-# class Feature(models.Model):
-#     title_name = models.CharField(max_length=100)
-#     description = models.TextField(null=True)
-#     image = models.ImageField(upload_to="home/", null=True)
-
-#     def __str__(self) -> str:
-#         return self.title_name
-
 
 class Accordion(models.Model):
     title_name = models.CharField(max_length=255)
@@ -42,13 +32,6 @@ class Testimonial(models.Model):
     def __str__(self) -> str:
         return self.writer
 
-
-class SocialMedia(models.Model):
-    social_name = models.CharField(max_length=50)
-    social_link = models.URLField()
-    social_logo = models.ImageField(upload_to="social/")
-
-
 class Teacher(models.Model):
     name = models.CharField(max_length=155)
     profile_picture=models.ImageField(upload_to="teachers/",null=True)
@@ -60,12 +43,8 @@ class Teacher(models.Model):
         return self.name
     
 class Post(models.Model):
-    class UserChoices(models.TextChoices):
-        ADMIN = "admin","Admin"
-        USER="user","User"
     title_name=models.CharField(max_length=100)
     image=models.ImageField(upload_to="blogs/")
-    user_type=models.CharField(max_length=30,choices=UserChoices.choices,default=UserChoices.ADMIN)
     content=models.TextField()
     created_at=models.DateTimeField(auto_now_add=True)
     
@@ -82,6 +61,12 @@ class Comment(models.Model):
     message=models.TextField()
     
     def __str__(self):
-        return self
+        return self.post.title_name
+    
+class EnrollCourse(models.Model):
+    course=models.ForeignKey(Product,on_delete=models.CASCADE,related_name="course_enrollment")
+    full_name=models.CharField(max_length=100)
+    email=models.EmailField()
+    phone_number=models.CharField(max_length=20,null=True)
     
     

@@ -1,68 +1,133 @@
 {% extends "index.html" %}
-{% block title %}Jacky IELTS - Home{% endblock title %}
+{% block title %}Scholar Trail - Home{% endblock title %}
 {% block content %}
-
-{% comment %} Thumbnail {% endcomment %}
-    <section class="home-slider owl-carousel">
-        {% for thumbnail in thumbnails %}
-        <div class="slider-item" style="background-image:url({{thumbnail.link}});">
-            <div class="overlay"></div>
-          <div class="container">
-            <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
-            <div class="col-md-6 ftco-animate">
-              <h1 class="mb-4">{{thumbnail.title_name}}</h1>
-              <p>{{thumbnail.sub_title}}</p>
-              <p><a href="{{thumbnail.link}}" class="btn btn-primary px-4 py-3 mt-3">Conatct US</a></p>
-            </div>
-          </div>
-          </div>
+{% if messages %}
+  {% for message in messages %}
+        <div id="enroll-message" {% if message.tags %} class="alert alert-{{message.tags}}"{% endif %} role="alert">
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERRORS %} Important: {% endif %}
+            {{ message }}
         </div>
-        {% endfor %}
-        
-        {% comment %} Why Choose Us {% endcomment %}
-        {% comment %} <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');">
-      <div class="overlay"></div>
-      <div class="container">
-        <div class="row no-gutters slider-text align-items-center justify-content-center">
-          <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-2 bread">Why Choose Us</h1>
-          </div>
-        </div>
+  {% endfor %}     
+{% endif %}
+{% if thumbnails %}
+<section class="home-slider owl-carousel bg-danger">
+  {% for thumbnail in thumbnails %}
+  <div class="slider-item" style="background-image:url('{{thumbnail.background_image.url}}'); ">
+    <div class="overlay bg-danger"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text align-items-center justify-content-start" data-scrollax-parent="true">
+      <div class="col-md-6 ftco-animate">
+        <h1 class="mb-4">{{thumbnail.title_name}}</h1>
+        <p>{{thumbnail.sub_title}}</p>
+        <p><a href="#contact-us" data-target="#contact-us" class="btn btn-primary px-4 py-3 mt-3" onclick="scrollToSection('#contact-us')">Contact Us</a></p>
       </div>
-    </section> {% endcomment %}
-        {% comment %} Products {% endcomment %}
-        {% if products %}
-        <section class="ftco-section bg-light">
-			<div class="container-fluid">
-				<div class="row justify-content-center mb-5 pb-2">
-              <div class="col-md-8 text-center heading-section ftco-animate">
-                <h2 class="mb-4"><span>Our</span> Courses</h2>
-              </div>
-            </div>	
-            <div class="row">
-              {% for product in products %}
-              <div class="col-md-3 course ftco-animate border">
-                <div class="img" style="background-image: url('{{product.image.url}}');"></div>
-                <div class="text pt-4">
-                  {% comment %} <p class="meta d-flex">
-                    <span><i class="icon-user mr-2"></i>Mr. Khan</span>
-                    <span><i class="icon-table mr-2"></i>10 seats</span>
-                    <span><i class="icon-calendar mr-2"></i>4 Years</span>
-                  </p> {% endcomment %}
-                  <h3><a href="#">{{product.product_name}}</a></h3>
-                  <p>{{product.price}} $</p>
-                  <p><a href="#" class="btn btn-primary">Buy now</a></p>
-                </div>
-              {% endfor %}
-              </div>
-            </div>
+    </div>
+    </div>
+  </div>
+  {% endfor %}
+</section>
+{% endif %}
+
+   <section class="ftco-section ftco-counter img bg-danger" id="section-counter" style="background-image: url();" data-stellar-background-ratio="0.5">
+    <div class="container">
+    		<div class="row justify-content-center mb-5  d-flex">
+          <div class="col-md-6 heading-section heading-section-white ftco-animate">
+            <h2 class="text-center">Why Choose Us</h2>
           </div>
-        </section>
-        {% endif %}
-        
-        {% if teachers %}
-        
-        	<section class="ftco-section bg-white">
+        </div>	
+    <div class="container container-choose-us">    
+        <div class="row d-md-flex align-items-center justify-content-center">
+            <!-- First Row: Students and Certified Teachers -->
+            <div class="col-lg-12">
+            <div class="row mt-5">
+							<div class="col-lg-6">
+								<div class="services-2 d-flex">
+									<div class="text pl-3">
+										<h3 class="text-white font-weight-bolder">Expert Guidance for Multiple Exams</h3>
+										<p class="text-white-50">Our team of highly qualified tutors, led by the dynamic Jesika, is well-versed in the nuances of exams such as GRE, GMAT, PTE, TOEFL, and IELTS. We provide targeted guidance and strategies to help you navigate the unique challenges of each test.</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="services-2 d-flex">
+									<div class="text pl-3">
+									<h3 class="text-white font-weight-bolder">Focused Coaching for Success</h3>
+										<p class="text-white-50">Our team focuses on honing the skills necessary for success in foreign entrance examinations, be it analytical thinking for GRE, quantitative reasoning for GMAT, or language proficiency for PTE, TOEFL, and IELTS.</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="services-2 d-flex">
+									<div class="text pl-3">
+										<h3 class="text-white font-weight-bolder">Customized Exam Preparation</h3>
+										<p class="text-white-50">Recognizing that each exam has its distinct format and requirements, our coaching is specifically designed to address the nuances of GRE’s analytical writing, GMAT’s integrated reasoning, PTE’s speaking section, TOEFL’s listening comprehension, and IELTS’s academic writing, among others.</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="services-2 d-flex">
+									<div class="text pl-3">
+										<h3 class="text-white font-weight-bolder">Proven Results Across Exams</h3>
+										<p class="text-white-50">Our success stories extend across a spectrum of foreign entrance examinations. Many students have not only met but exceeded their score goals, unlocking doors to international education and career opportunities..</p>
+									</div>
+								</div>
+							</div>
+						</div>
+        </div>
+    </div>
+</section>
+
+{% if courses %}
+    <section id="course-section" class="ftco-section">
+        <div class="container-fluid px-4">
+            <div class="row justify-content-center mb-5 pb-2">
+                <div class="col-md-8 text-center heading-section ftco-animate">
+                    <h2 class="mb-4"><span>Our</span> Courses</h2>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center s">
+                {% for course in courses %}
+                <div class="col-md-3 col-sm-12 course ftco-animate text-center">
+                    <div class="card justify-content-around" style="width: 18rem;">
+                        <img src="{{course.image.url}}" class="card-img-top" style="object-fit: contain; height: 191px;" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{course.product_name}}</h5>
+                            <p class="card-text">{{course.description}}</p>
+                            <!-- Button to trigger the modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-dialog">Enroll Now</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="modal-dialog" tabindex="-1" aria-labelledby="modal-dialog-label" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modal-dialog-label">Enroll Now</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Your form elements go here -->
+                                <form method="POST" action="{% url 'course_enroll' course.id %}">
+                                    {% csrf_token %}
+                                    {{form.as_p}}
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endif %}
+
+
+
+
+{% if teachers %}
+<section class="ftco-section bg-light">
 			<div class="container-fluid px-4">
 				<div class="row justify-content-center mb-5 pb-2">
           <div class="col-md-8 text-center heading-section ftco-animate">
@@ -73,20 +138,14 @@
           {% for teacher in teachers %}
           <div class="col-md-6 col-lg-3 ftco-animate">
 						<div class="staff">
-							<div class="img-wrap d-flex align-items-stretch">
-								<div class="img align-self-stretch" style="background-image: url({{teacher.profile_picture.url}});"></div>
+							<div class="img-wrap d-flex align-items-stretch" height="191px" width="286px">
+								<div class="img align-self-stretch"  style="background-image: url('{{teacher.profile_picture.url}}');"></div>
 							</div>
 							<div class="text pt-3 text-center">
 								<h3>{{teacher.name}}</h3>
 								<span class="position mb-2">{{teacher.position}}</span>
 								<div class="faded">
 									<p>{{teacher.short_description}}</p>
-									{% comment %} <ul class="ftco-social text-center">
-		                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-google-plus"></span></a></li>
-		                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-		              </ul> {% endcomment %}
 	              </div>
 							</div>
 						</div>
@@ -95,53 +154,71 @@
 				</div>
 			</div>
 		</section>
-        {% endif %}
+{% endif %}
 
-    {% comment %} Testimonials {% endcomment %}
-    {% if testimonials %}
-    <section class="ftco-section testimony-section bg-light">
-    <div class="container">
-      <div class="row justify-content-center mb-5 pb-2">
-        <div class="col-md-8 text-center heading-section ftco-animate">
-          <h2 class="mb-4">Student Says About Us</h2>
-          {% comment %} <p>Separated they live in. A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country</p> {% endcomment %}
-        </div>
-      </div>
-      <div class="row ftco-animate justify-content-center">
-        <div class="col-md-12">
-          <div class="carousel-testimony owl-carousel">
-            {% for testimonial in testimonials %}
-            <div class="item">
-              <div class="testimony-wrap d-flex">
-                <div class="user-img mr-4" style="background-image: url('{{testimonial.profile_picture.url}}')">
-                </div>
-                <div class="text ml-2">
-                  <span class="quote d-flex align-items-center justify-content-center">
-                    <i class="icon-quote-left"></i>
-                  </span>
-                  <p>{{testimonial.text_name}}</p>
-                  <p class="name">{{testimonial.writer}}</p>
-                </div>
-              </div>
-            </div>
-            {% endfor %}
+
+
+<section class="ftco-section ftco-counter img bg-danger"  id="section-counter"  style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="container">
+    		<div class="row justify-content-center  pb-2 d-flex">
+    			<div class="col-md-6 py-5 ">
+            {% comment %} <div class="heading-section heading-section-white ftco-animate mb-5">
+            <h2 class="mb-4">Exploring Beyond the Classroom</h2>
+            <p>Curious about my life beyond teaching? Here’s a sneak peek:</p>
+            <p>When I’m not curating materials for my students or nurturing this website, you might find me amid an invigorating jog, sharing playful moments with delightful canine companions, or embarking on exhilarating adventures to picturesque hilltops with cherished friends.</p>
+          </div> {% endcomment %}
+    				<div class="">
+              
+		          <div class="heading-section heading-section-white ftco-animate mb-5">
+		            <h2 class="mb-4">Stay In Touch</h2>
+		          </div>
+		          <form action="#" class="appointment-form ftco-animate">
+		    				<div class="d-md-flex">
+			    				<div class="form-group">
+			    					<input type="text" class="form-control" placeholder="First Name">
+			    				</div>
+			    				<div class="form-group ml-md-4">
+			    					<input type="text" class="form-control" placeholder="Last Name">
+			    				</div>
+		    				</div>
+		    				<div class="d-md-flex">
+		    					<div class="form-group ml-md-4">
+			    					<input type="text" class="form-control" placeholder="Phone">
+			    				</div>
+		    				</div>
+		    				<div class="d-md-flex">
+		    					<div class="form-group">
+			              <textarea name="" id="" cols="30" rows="2" class="form-control" placeholder="Message"></textarea>
+			            </div>
+			            <div class="form-group ml-md-4">
+			              <input type="submit" value="Request A Quote" class="btn btn-primary py-3 px-4">
+			            </div>
+		    				</div>
+		    			</form>
+		    		</div>
+    			</div>
+          <div class="col-md-6 heading-section heading-section-white ftco-animate pl-lg-5 pt-md-0 pt-5">
+            <h2 class="mb-4">About Us</h2>
+            <p>Welcome to My World! I'm Jesika, your guide on an exciting journey of English education. Once an engineer at Infosys, I discovered my true passion for teaching, particularly in IELTS and Spoken English.</p>
+            <p>My career transitioned into a vibrant tapestry of tutoring, and what drives me is the limitless potential of online teaching. Embracing technology, I connect with English enthusiasts worldwide through platforms like Skype, blending tradition with innovation.</p>
+            <p>Currently, my focus is on online IELTS coaching, where I passionately assist individuals in mastering English and acing their exams. The future holds boundless possibilities, as I constantly brainstorm ideas to provide even more value. Stay tuned for what's on the horizon!</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    {% endif %}
-        <footer class="ftco-footer ftco-bg-dark ftco-section">
-      {% comment %} <div class="container"> {% endcomment %}
+        </div>	
+    	</div>
+    </section>
+
+
+<footer id="contact-us" class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
         <div class="row mb-5">
           <div class="col-md-6 col-lg-3">
             <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<h2 class="ftco-heading-2">Contact Us</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	                <li><span class="icon icon-map-marker"></span><span class="text">Sector 8C, Madhya Marg, Chandigarh 160009</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+919988094693, +917719707307</span></a></li>
+	                <li><a href="mailto:info@scholartrail.org"><span class="icon icon-envelope"></span><span class="text">info@scholartrail.org</span></a></li>
 	              </ul>
 	            </div>
             </div>
@@ -150,7 +227,7 @@
             <div class="ftco-footer-widget mb-5">
               <h2 class="ftco-heading-2">Recent Blog</h2>
               <div class="block-21 mb-4 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a>
+                {% comment %} <a class="blog-img mr-4" style="background-image: url(images/image_1.jpg);"></a> {% endcomment %}
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">
@@ -161,7 +238,7 @@
                 </div>
               </div>
               <div class="block-21 mb-5 d-flex">
-                <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a>
+                {% comment %} <a class="blog-img mr-4" style="background-image: url(images/image_2.jpg);"></a> {% endcomment %}
                 <div class="text">
                   <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control about</a></h3>
                   <div class="meta">
@@ -178,21 +255,14 @@
               <h2 class="ftco-heading-2">Links</h2>
               <ul class="list-unstyled">
                 <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Home</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Blog</a></li>
-                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact Us</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>About</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Services</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Deparments</a></li>
+                <li><a href="#"><span class="ion-ios-arrow-round-forward mr-2"></span>Contact</a></li>
               </ul>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
-            <div class="ftco-footer-widget mb-5">
-            	<h2 class="ftco-heading-2">Subscribe Us!</h2>
-              <form action="#" class="subscribe-form">
-                <div class="form-group">
-                  <input type="text" class="form-control mb-2 text-center" placeholder="Enter email address">
-                  <input type="submit" value="Subscribe" class="form-control submit px-3">
-                </div>
-              </form>
-            </div>
             <div class="ftco-footer-widget mb-5">
             	<h2 class="ftco-heading-2 mb-0">Connect With Us</h2>
             	<ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-3">
@@ -203,15 +273,41 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-
-            <p>
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | IELTS Jacky
-  </p>
-          </div>
-        </div>
       </div>
     </footer>
+
+    <style>
+  .card {
+    width: 18rem;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
+  }
+</style>
+{% if messages %}
+<script>
+  function scrollToSection(sectionId) {
+    const targetSection = document.querySelector(sectionId);
+    if (targetSection) {
+      console.log(targetSection,"ctfytuhvh guhihvghjgivchgvuyvhc")
+      window.location.href="/"+sectionId
+      targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+</script>
+
+<script>
+  setTimeout(function(){
+  $('#enroll-message').fadeOut('slow');
+  }, 4000);
+</script>
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> {% endcomment %}
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {% endblock content %}
+
+
 

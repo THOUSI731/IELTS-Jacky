@@ -5,7 +5,7 @@ from django.db import models
 class Product(models.Model):
     product_name = models.CharField(max_length=150)
     image = models.ImageField(upload_to="products/")
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(max_digits=10, decimal_places=2,null=True,blank=True)
     description=models.TextField(null=True,blank=True)
     has_offer=models.BooleanField(default=False)
     

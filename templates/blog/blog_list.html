@@ -17,18 +17,18 @@
             <div class="blog-entry">
               <a href="blog-single.html" class="block-20 d-flex align-items-end" style="background-image: url('{{blog.image.url}}');">
 								<div class="meta-date text-center p-2">
-                  {% comment %} <span class="day"><script>document.write(new Date({{blog.created_at}}).day);</script></span>
-                  <span class="mos"><script>document.write(new Date({{blog.created_at}}).month);</script></span>
-                  <span class="yr"><script>document.write(new Date({{blog.created_at}}).year);</script></span> {% endcomment %}
+                <span class="day">{{blog.created_at|date:"d"|upper}}</span>
+                  <span class="mos">{{blog.created_at|date:"b"|upper}}</span>
+                  <span class="yr">{{blog.created_at|date:"Y"}}</span>
                 </div>
               </a>
               <div class="text bg-white p-4">
                 <h3 class="heading"><a href="#">{{blog.title_name}}</a></h3>
-                <p>{{blog.content}}</p>
+                <p>{{blog.content|truncatechars:50}}</p>
                 <div class="d-flex align-items-center mt-4">
 	                <p class="mb-0"><a href="{% url 'blog_detail' blog.id %}" class="btn btn-primary">Read More <span class="ion-ios-arrow-round-forward"></span></a></p>
 	                <p class="ml-auto mb-0">
-	                	<a href="#" class="mr-2">{{blog.user_type|upper}}</a>
+	                	<a href="#" class="mr-2">Admin</a>
 	                	{% comment %} <a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a> {% endcomment %}
 	                </p>
                 </div>
@@ -42,4 +42,5 @@
 		</section>
 
 {% endif %}
+
 {% endblock content %}

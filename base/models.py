@@ -76,3 +76,16 @@ class EnrollCourse(models.Model):
     full_name = models.CharField(max_length=100)
     email = models.EmailField()
     phone_number = models.CharField(max_length=20, null=True)
+    
+    def __str__(self) -> str:
+        return self.full_name 
+    
+# class StayInTouch(models.Model):
+#     first_name=models.CharField(max_length=155)
+#     last_name=models.CharField(max_length=155,null=True)
+#     phone_number=models.CharField(max_length=15)
+#     message=models.TextField()
+    
+#     def __str__(self) -> str:
+#         return self.first_name
+

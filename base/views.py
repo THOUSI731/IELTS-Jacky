@@ -5,6 +5,7 @@ from django.views import View
 from base.forms import EnrollNowForm
 from django.contrib import messages
 from django.urls import reverse
+from django.http import JsonResponse
 
 
 class HomePageView(View):
@@ -13,7 +14,7 @@ class HomePageView(View):
         testimonials = Testimonial.objects.all()
         courses = Product.objects.all()
         teachers = Teacher.objects.all()[:4]
-        blogs=Post.objects.prefetch_related("blog_comments").all().order_by("-id")[:2]
+        blogs = Post.objects.prefetch_related("blog_comments").all().order_by("-id")[:2]
         form = EnrollNowForm()
         context = {
             "thumbnails": thumbnails,
@@ -21,10 +22,9 @@ class HomePageView(View):
             "courses": courses,
             "teachers": teachers,
             "form": form,
-            "blogs":blogs
+            "blogs": blogs,
         }
         return render(request, "home/home.html", context)
-
 
 
 class CourseEnrollCreateView(View):
@@ -36,14 +36,11 @@ class CourseEnrollCreateView(View):
             except Product.DoesNotExist:
                 messages.error(request, "Course not found")
                 return redirect("home-view")
-            full_name = forms.cleaned_data.get("full_name", None)
-            email = forms.cleaned_data.get("email", None)
-            phone_number = forms.cleaned_data.get("phone_number", None)
             EnrollCourse.objects.create(
                 course=course,
-                full_name=full_name,
-                email=email,
-                phone_number=phone_number,
+                full_name=forms.cleaned_data.get("full_name", None),
+                email=forms.cleaned_data.get("email", None),
+                phone_number=forms.cleaned_data.get("phone_number", None),
             )
             messages.success(
                 request, "Form Submitted Successfully.We Will Contact You Soon"
@@ -89,3 +86,19 @@ class BlogDetailView(View):
             website=website,
         )
         return redirect(reverse("blog_detail", kwargs={"id": id}))
+
+
+# class StayInTouchView(View):
+#     def post(self, request, *args, **kwargs):
+#         full_name = request.POST.get("first_name")
+#         email = request.POST.get("last_name")
+#         website = request.POST.get("website")
+#         message = request.POST.get("message")
+#         Comment.objects.create(
+#             post=blog,
+#             full_name=full_name,
+#             email=email,
+#             message=message,
+#             website=website,
+#         )
+#         return redirect("home-view")

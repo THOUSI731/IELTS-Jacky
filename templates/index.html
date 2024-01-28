@@ -57,7 +57,7 @@
     </div>
 </div>
 
-	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light" id="ftco-navbar">
+	  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ftco-navbar-light sticky-top" id="ftco-navbar">
 	    <div class="container d-flex align-items-center px-4">
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="oi oi-menu"></span> Menu
@@ -65,9 +65,11 @@
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav mr-auto">
 	        	<li class="nav-item {% if request.path == '/' %}active{% endif %} "><a href="{% url 'home-view' %}" class="nav-link pl-0">Home</a></li>
+	        	<li class="nav-item"><a href="#about-us"  class="nav-link">About Us</a></li>
+	        	<li class="nav-item"><a href="#course-section"  class="nav-link">Courses</a></li>
+	        	<li class="nav-item"><a href="#trainers-section"  class="nav-link">Trainers</a></li>
 	        	<li class="nav-item {% if request.path == '/blogs/' %}active{% endif %}"><a href="{% url 'blogs-list' %}" class="nav-link">Blog</a></li>
-	        	<li class="nav-item"><a href="#course-section" data-target="#course-section" onclick="scrollToSection('#course-section')" class="nav-link">Courses</a></li>
-	          	<li class="nav-item"><a href="#contact-us" data-target="#contact-us" onclick="scrollToSection('#contact-us')" class="nav-link">Contact Us</a></li>
+	          	<li class="nav-item"><a href="#about-us" class="nav-link">Contact Us</a></li>
 	        </ul>
 	      </div>
 	    </div>
@@ -96,6 +98,33 @@
 		{% comment %} <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> {% endcomment %}
 		{% comment %} <script src="{% static 'js/google-map.js' %}"></script> {% endcomment %}
 		<script src="{% static 'js/main.js' %}"></script>
+        <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            if(window.location.pathname === "/blogs/"){
+                localStorage.setItem('redirect', this.getAttribute('href'));
+                window.location.href="/"
+                setTimeout(() => {
+                    const targetId = localStorage.getItem('redirect');
+                    localStorage.removeItem('redirect'); 
+                    console.log(targetId)
+                    if (targetId) {
+                        const targetElement = document.getElementById(targetId.substring(1));
+                        if (targetElement) {
+                            targetElement.scrollIntoView({
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                }, 2000);
+            }
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+            });
+        });
+        </script>
 		{% block script %}
 		
 		{% endblock script %}

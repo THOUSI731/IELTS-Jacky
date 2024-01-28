@@ -19,7 +19,7 @@
       <div class="col-md-6 ftco-animate">
         <h1 class="mb-4">{{thumbnail.title_name}}</h1>
         <p>{{thumbnail.sub_title}}</p>
-        <p><a href="#contact-us" data-target="#contact-us" class="btn btn-primary px-4 py-3 mt-3" onclick="scrollToSection('#contact-us')">Contact Us</a></p>
+        <p><a href="#contact-us"  class="btn btn-primary px-4 py-3 mt-3" >Contact Us</a></p>
       </div>
     </div>
     </div>
@@ -85,10 +85,10 @@
                     <h2 class="mb-4"><span>Our</span> Courses</h2>
                 </div>
             </div>
-            <div class="row d-flex justify-content-center align-items-center s">
+            <div class="row">
                 {% for course in courses %}
-                <div class="col-md-4 col-sm-12 course ftco-animate text-center">
-                    <div class="card justify-content-around" style="width: 18rem;">
+                <div class="col-md-4 col-sm-12 course d-flex justify-content-center ftco-animate text-center">
+                    <div class="card d-flex align-items-stretch" style="width: 18rem;">
                         <img src="{{course.image.url}}" class="card-img-top" style="object-fit: contain; height: 191px;" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{course.product_name}}</h5>
@@ -98,6 +98,22 @@
                         </div>
                     </div>
                 </div>
+                <!-- {% for teacher in teachers %}
+                <div class="col-md-6 col-lg-3 ftco-animate">
+                  <div class="staff">
+                    <div class="img-wrap d-flex align-items-stretch" height="191px" width="286px">
+                      <div class="img align-self-stretch" style="background-image: url('{{teacher.profile_picture.url}}');"></div>
+                    </div>
+                    <div class="text pt-3 text-center">
+                      <h3>{{teacher.name}}</h3>
+                      <span class="position mb-2">{{teacher.position}}</span>
+                      <div class="faded">
+                        <p>{{teacher.short_description}}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %} -->
                 <!-- Modal -->
                 <div class="modal fade" id="modal-dialog" tabindex="-1" aria-labelledby="modal-dialog-label" aria-hidden="true">
                     <div class="modal-dialog">
@@ -108,7 +124,7 @@
                             </div>
                             <div class="modal-body">
                                 <!-- Your form elements go here -->
-                                <form method="POST" action="{% url 'course_enroll' course.id %}">
+                                <form id="course_enroll_form-{{course.id}}" method="POST" action="{% url 'course_enroll' course.id %}">
                                     {% csrf_token %}
                                     {{form.as_p}}
                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -137,7 +153,7 @@
     </section>
 
 {% if teachers %}
-<section class="ftco-section bg-light">
+<section id="trainers-section" class="ftco-section bg-light">
 			<div class="container-fluid px-4">
 				<div class="row justify-content-center mb-5 pb-2">
           <div class="col-md-8 text-center heading-section ftco-animate">
@@ -168,8 +184,8 @@
 
 
 
-<section class="ftco-section ftco-counter img bg-danger"  id="section-counter"  style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
-    	<div class="container">
+<section class="ftco-section ftco-counter img bg-danger"  id="about-us"  style="background-image: url(images/bg_3.jpg);" data-stellar-background-ratio="0.5">
+    	<div class="container" >
     		<div class="row justify-content-center  pb-2 d-flex">
     			<div class="col-md-6 py-5 ">
             {% comment %} <div class="heading-section heading-section-white ftco-animate mb-5">
@@ -284,18 +300,10 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); 
   }
 </style>
-{% if messages %}
-<script>
-  if(window.location.href=="/"){
-    function scrollToSection(sectionId) {
-      const targetSection = document.querySelector(sectionId);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  }
-</script>
 
+
+
+{% if messages %}
 <script>
   setTimeout(function(){
   $('#enroll-message').fadeOut('slow');
@@ -303,7 +311,7 @@
 </script>
 {% endif %}
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> {% endcomment %}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 {% endblock content %}
 

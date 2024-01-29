@@ -53,7 +53,6 @@ class EnrollNowForm(forms.ModelForm):
     def clean_email(self):
         email = self.cleaned_data["email"]
         from django.core.validators import EmailValidator
-
         email_validator = EmailValidator("Enter a valid email address.")
         email_validator(email)
         return email

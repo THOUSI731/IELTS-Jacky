@@ -6,6 +6,7 @@ from base.forms import EnrollNowForm
 from django.contrib import messages
 from django.urls import reverse
 from django.http import JsonResponse
+from django.core.serializers import serialize
 
 
 class HomePageView(View):
@@ -26,8 +27,19 @@ class HomePageView(View):
         }
         return render(request, "home/home.html", context)
 
-
 class CourseEnrollCreateView(View):
+    def get(self, request, id, *args, **kwargs):
+        product = Product.objects.get(id=id)
+        serialized_product = {
+            "id": product.pk,
+            "product_name": product.product_name,
+            "image": str(product.image),
+            "price": product.price,
+            "description": product.description,
+            "has_offer": product.has_offer,
+        }
+        return JsonResponse({"data": serialized_product})
+
     def post(self, request, id, *args, **kwargs):
         forms = EnrollNowForm(request.POST)
         if forms.is_valid():
@@ -42,12 +54,8 @@ class CourseEnrollCreateView(View):
                 email=forms.cleaned_data.get("email", None),
                 phone_number=forms.cleaned_data.get("phone_number", None),
             )
-            messages.success(
-                request, "Form Submitted Successfully.We Will Contact You Soon"
-            )
-            return redirect("home-view")
-        messages.error(request, "Something Went Wrong")
-        return redirect("home-view")
+            return JsonResponse({"message":"Form Submitted Successfully","success":True,"status":201})
+        return JsonResponse({"errors":forms.errors,"success":False,"status":400})
 
 
 class BlogListView(View):
